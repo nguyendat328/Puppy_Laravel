@@ -1,103 +1,103 @@
 @extends('admin.layouts.layouts')
 @section('content')
-<!-- //<script> 
+<script> 
 
-// 	function onCkeckAll(){
-//         var f = document.frmTable;
-// 	    var cki = document.getElementsByName('ckOne');
+	function onCkeckAll(){
+        var f = document.frmTable;
+	    var cki = document.getElementsByName('ckOne');
 	
-// 		if(f.ckAll.checked==true){
-// 			for(let i=0; i<cki.length; i++){
-// 				cki[i].checked = true;
-// 			}
-// 		}else{
-// 			for(let i=0; i<cki.length; i++){
-// 				cki[i].checked = false;
-// 			}
-// 		}
-// 	}
-// 	function getId(_ckName){
-// 		var arr = new Array();
-// 		var f = document.frmTable;
-// 		var cki = document.getElementsByName(_ckName);
-// 		for(i=0; i<cki.length; i++){
-// 			if(cki[i].checked === true){
-// 				arr.push(cki[i].value);
-// 			}
-// 		}
-// 		if(arr.length==0){
-// 			return false;
-// 		}else{
-// 			return arr;
-//         }
+		if(f.ckAll.checked==true){
+			for(let i=0; i<cki.length; i++){
+				cki[i].checked = true;
+			}
+		}else{
+			for(let i=0; i<cki.length; i++){
+				cki[i].checked = false;
+			}
+		}
+	}
+	function getId(_ckName){
+		var arr = new Array();
+		var f = document.frmTable;
+		var cki = document.getElementsByName(_ckName);
+		for(i=0; i<cki.length; i++){
+			if(cki[i].checked === true){
+				arr.push(cki[i].value);
+			}
+		}
+		if(arr.length==0){
+			return false;
+		}else{
+			return arr;
+        }
       
-//     }
-//     function onDeleteAll(){
+    }
+    function onDeleteAll(){
         
-// 		var f = document.frmTable;
-// 		var cki = document.getElementsByName('ckOne');
-//         var lsId = getId('ckOne');
-//        	if(lsId===false){
-// 			alert("Please choose at least one");
-// 			return false;
-// 		}else{
-//             var per=document.getElementById('readPer').value;
-// 				if(per=="manager"){
-// 					alert("You do not have permission for this action!");
+		var f = document.frmTable;
+		var cki = document.getElementsByName('ckOne');
+        var lsId = getId('ckOne');
+       	if(lsId===false){
+			alert("Please choose at least one");
+			return false;
+		}else{
+            var per=document.getElementById('readPer').value;
+				if(per=="manager"){
+					alert("You do not have permission for this action!");
 					
-// 				}else{
+				}else{
 
-//                     if(confirm("Do you want to delete?")){
-//                         //DELETE FROM tbl WHERE ID IN (1,2,5);
+                    if(confirm("Do you want to delete?")){
+                        //DELETE FROM tbl WHERE ID IN (1,2,5);
         
-//                         listID = lsId.join(',');
+                        listID = lsId.join(',');
         
-//                         window.location.href = "?m=typedog&a=delete&lsid="+listID;	
-//                     }
-//                 }
-// 		}
-// 	}
-//     function onAdd(){
-// 		window.location.href="?m=typedog&a=add";
-// 	}
-//     function onDelete(_id){
-//         var per=document.getElementById('readPer').value;
-// 				if(per=="manager"){
-// 					alert("You do not have permission for this action!");
+                        window.location.href = "?m=typedog&a=delete&lsid="+listID;	
+                    }
+                }
+		}
+	}
+    function onAdd(){
+		window.location.href="{{route('Admin::dogs@add')}}";
+	}
+    function onDelete(_id){
+        var per=document.getElementById('readPer').value;
+				if(per=="manager"){
+					alert("You do not have permission for this action!");
 					
-// 				}else{
+				}else{
                     
-//                     if(confirm("Do you want to delete this record?")){
-//                         window.location.href="?m=typedog&a=delete&id="+_id;
-//                     }
-//                 }
-//     }
-//     function onEdit(_id){
-//         if(confirm("Do you want to edit this record?")){
-//             window.location.href="?m=typedog&a=edit&id="+_id;
-//         }
-//     }
-//     function setLimit(){
-//         var s= document.getElementById('txtLimit').value;
-//         
-//        // alert(limit);
+                    if(confirm("Do you want to delete this record?")){
+                        window.location.href="?m=typedog&a=delete&id="+_id;
+                    }
+                }
+    }
+    function onEdit(_id){
+        if(confirm("Do you want to edit this record?")){
+            window.location.href="?m=typedog&a=edit&id="+_id;
+        }
+    }
+    function setLimit(){
+        var s= document.getElementById('txtLimit').value;
+        
+       // alert(limit);
        
-//     }
-//  $(document).ready(function(){
-//     var url;
+    }
+ $(document).ready(function(){
+    var url;
         
         
-//         url="{baseUrl}/admin/ajax/typedog/sethighlight.php";
-//         $("#readHighlight").load(url);
-//  });
-//     function onsethighlight(_id){
-//         var url;
+        url="{baseUrl}/admin/ajax/typedog/sethighlight.php";
+        $("#readHighlight").load(url);
+ });
+    function onsethighlight(_id){
+        var url;
         
         
-//         url="{baseUrl}/admin/ajax/typedog/sethighlight.php?id="+_id;
-//         $("#readHighlight").load(url);
-// 	}
-// </script> -->
+        url="{baseUrl}/admin/ajax/typedog/sethighlight.php?id="+_id;
+        $("#readHighlight").load(url);
+	}
+</script>
 
 <!-- // chia tach doan scrip ra -->
 <form method='POST' name='frmTable'>
@@ -166,40 +166,40 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($showdog as $content)
+                                            @foreach($showdog as $dog)
                                             
                                                 <tr role="row" class="odd">
                                                     <td>{{$loop->iteration}}</td>
-                                                    <td class="sorting_1">{{$content->id}}</td>
+                                                    <td class="sorting_1">{{$dog->id}}</td>
                                                     <td>                                                   
-                                                        <img style="width: 100px;" src="http://localhost/project/public//img/{{$content->img}}">
+                                                        <img style="width: 100px;" src="http://localhost/project/public//img/{{$dog->img}}">
                                                         <br>
                                                     </td>
                                                     <td>
-                                                        <strong>{{$content->dog_name}}</strong>
+                                                        <strong>{{$dog->dog_name}}</strong>
                                                         <br>
-                                                        <i>{{$content->subcontent}}</i>
+                                                        <i>{{$dog->subcontent}}</i>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-info btn-margin" href="#" onclick="onEdit({{$content->id}})">
+                                                        <a class="btn btn-info btn-margin" href="#" onclick="onEdit({{$dog->id}})">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
-                                                        <a href="#" class="delete_equipment btn btn-danger btn-margin" name="delete" onclick="onDelete({{$content->id}});">
+                                                        <a href="#" class="delete_equipment btn btn-danger btn-margin" name="delete" onclick="onDelete({{$dog->id}});">
                                                             <i class="fa fa-times"></i>
                                                         </button>
                                                     </td>
                                                     <td>
                                                     <label class="switch">
-                                                        @if($content->highlight==1)
-                                                        <input type="checkbox" checked onclick="onsethighlight({{$content->id}});">
+                                                        @if($dog->highlight==1)
+                                                        <input type="checkbox" checked onclick="onsethighlight({{$dog->id}});">
                                                         @else
-                                                        <input type="checkbox" onclick="onsethighlight({{$content->id}});">
+                                                        <input type="checkbox" onclick="onsethighlight({{$dog->id}});">
                                                         @endif
                                                         <span class="slider"></span>
                                                         </label> 
                                                     </td>
                                                     <td> 
-                                                        <input type='checkbox' name='ckOne' value='{{$content->id}}' onclick ='getId()' />
+                                                        <input type='checkbox' name='ckOne' value='{{$dog->id}}' onclick ='getId()' />
                                                     </td>
                                                 </tr>
                                                 @endforeach

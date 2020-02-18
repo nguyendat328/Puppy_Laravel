@@ -13,6 +13,8 @@ interface BaseRepositoryInterface{
     // public function deleteCategory($id);
 
     public function getList($limit);
+    public function getdogs();
+    public function getCountry();
 
     // public function getEditCategory($id);
 

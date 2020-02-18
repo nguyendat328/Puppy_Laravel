@@ -18,8 +18,15 @@ Route::group(['namespace'=>'admin',
 'prefix' => 'admin',
 'as'=>'Admin::'],function(){
     Route::group(['prefix'=>'dogs', 'as'=>'dogs@'], function(){
-        Route::get('/',['as'=>'index','uses'=>'dogsController@showk']);
-        Route::post('/',['as'=>'limit','uses'=>'dogsController@showk']);
+        Route::get('/',['as'=>'index','uses'=>'dogsController@index']);
+        Route::post('/',['as'=>'limit','uses'=>'dogsController@index']);
+        Route::get('add',['as'=>'add','uses'=>'dogsController@add']);
+        Route::get('edit/{id}',['as'=>'edit','uses'=>'dogsController@edit']);
+        Route::post('store',['as'=>'store','uses'=>'dogsController@store']);
+        Route::post('edit{id}',['as'=>'update','uses'=>'dogsController@add']);
+
+
+
 
     });
 });
